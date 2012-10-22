@@ -5,10 +5,10 @@
   %thead
     %tr
       %th{:class => (@sort_col == 'title' ? 'hilite' : '')}
-        %a{:title => 'title_header', :href => '?sort=title'} Movie Title 
+        %a{:id => 'title_header', :href => '?sort=title'} Movie Title 
       %th Rating
       %th{:class => (@sort_col == 'release_date' ? 'hilite' : '')}
-        %a{:title => 'release_date_header', :href => '?sort=release_date'} Release Date
+        %a{:id => 'release_date_header', :href => '?sort=release_date'} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
