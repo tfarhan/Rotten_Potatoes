@@ -1,12 +1,14 @@
 -#  This file is app/views/movies/index.html.haml
-%h1 All Movies
+%h1 All Movies, #{@par}
 
 %table#movies
   %thead
     %tr
-      %th Movie Title
+      %th{:class => (@sort_col == 'title' ? 'hilite' : '')}
+        %a{:title => 'title_header', :href => '?sort=title'} Movie Title 
       %th Rating
-      %th Release Date
+      %th{:class => (@sort_col == 'release_date' ? 'hilite' : '')}
+        %a{:title => 'release_date_header', :href => '?sort=release_date'} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
