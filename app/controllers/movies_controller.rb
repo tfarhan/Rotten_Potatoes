@@ -6,10 +6,31 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def index
-    @sort_col = params[:sort]
-    @movies = Movie.findall(@sort_col)
+
+  def index    
+    @all_ratings = Movie.movie_ratings
+    @sort_on = params[:sort]
+
+    ratings_hash = params[:ratings]
+    @ratings_filter = Array.new
+
+    if !Movie.init_value
+      @ratings_filter = Movie.ratings_previous
+    end
+
+    if !ratings_hash.nil?         
+      @ratings_filter = ratings_hash.keys           
+    end
+
+    if !@sort_on.nil?
+        @ratings_filter = Movie.ratings_previous
+    end
+
     
+
+    @movies = Movie.findall(@sort_on, @ratings_filter)
+    
+    @page = Movie.ratings_previous
   end
 
   def new
